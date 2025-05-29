@@ -22,6 +22,7 @@ class SortFastaFile:
             else:  # Sequence is not a header
                 self.seqs[name] += line
         print(f"FASTA dict: {self.seqs}")
+        f_file.close()
 
 
 
