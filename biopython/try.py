@@ -18,5 +18,5 @@ for alignment in blast_record.alignments:
             print(f"length: {alignment.length}")
             print(f"e value: {hsp.expect}")
             print(f"match: {hsp.match}")
-            print(f"subject: {hsp.sbjct}")
+            print(f"alignment subject: {hsp.sbjct}")
 
