@@ -49,12 +49,13 @@ class SortFastaFile:
             opts[k] = v
 
         if "-h" in opts.keys():
+            print(f"Exiting!")
             self.usage(); sys.exit()
 
 
 def caller():
 
-    print(f"Command line arguments: {sys.argv}")
+    # print(f"Command line arguments: {sys.argv}")
     file_name = sys.argv[1]
     f_file = SortFastaFile(file_name)
     f_file.read_fasta()
