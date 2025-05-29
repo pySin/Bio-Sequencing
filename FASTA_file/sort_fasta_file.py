@@ -21,10 +21,16 @@ class SortFastaFile:
                 self.seqs[name] = ""
             else:  # Sequence is not a header
                 self.seqs[name] += line
+        print(f"FASTA dict: {self.seqs}")
 
 
 
+def caller():
+    f_file = SortFastaFile("gene.fna")
+    f_file.read_fasta()
 
-def caller:
-    f_file = SortFastaFile("gene2.fna")
+
+if __name__ == "__main__":
+    caller()
+
 
