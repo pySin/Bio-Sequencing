@@ -41,7 +41,11 @@ class SortFastaFile:
         print(f"Some options connected with the arguments received from the command line.")
 
     def arg_options(self):
-        o, a = getopt.getopt(sys.argv[1:], "l:h")
+        one_cont = getopt.getopt(sys.argv, "l:h")
+        print(f"One Cont: {one_cont}")
+        o, a = getopt.getopt(sys.argv[1:], "l:h")  # getopt.getopt() returns 2 lists
+        print(f"o arguments: {o}")
+        print(f"a arguments: {a}")
         opts = {}
         seqlen = 0
 
@@ -51,6 +55,8 @@ class SortFastaFile:
         if "-h" in opts.keys():
             print(f"Exiting!")
             self.usage(); sys.exit()
+        if len(a) < 1:
+            self.usage(); sys.exit("FASTA file is missing")
 
 
 def caller():
