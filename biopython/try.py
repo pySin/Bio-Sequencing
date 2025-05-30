@@ -24,7 +24,6 @@ from Bio.Blast import NCBIXML
 #             print(f"alignment subject: {hsp.sbjct}")
 
 ## Create a random DNA sequence
-
 import random
 
 
