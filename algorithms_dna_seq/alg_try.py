@@ -35,5 +35,22 @@ def read_genome(filename):
                 genome += line.rstrip()
     return  genome
 
+def count_each_base(seq):
+    base_count = {
+        "A": 0,
+        "T": 0,
+        "G": 0,
+        "C": 0
+    }
+
+    for letter in seq:
+        base_count[letter] += 1
+
+    return base_count
+
 genome_red = read_genome("lambda_virus.fa")
-print(f"Genome sequence: {genome_red}")
+# print(f"Genome sequence: {genome_red}")
+# print(f"Genome Length: {len(genome_red)}")
+
+base_count = count_each_base(genome_red)
+print(f"Bases Frequency: {base_count}")
