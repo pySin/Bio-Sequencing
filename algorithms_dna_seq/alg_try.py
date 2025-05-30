@@ -12,12 +12,28 @@
 
 ## Complementary dictionary
 
-dna_dict = {"A":"T", "T":"A", "G":"C", "C":"G"}
+# dna_dict = {"A":"T", "T":"A", "G":"C", "C":"G"}
+#
+# def getComplimentaryString(string):
+#
+#     c_string = "".join([dna_dict[l] for l in string])
+#     return c_string
+#
+# print(getComplimentaryString("AATTCC"))
 
-def getComplimentaryString(string):
+## Download genome
 
-    c_string = "".join([dna_dict[l] for l in string])
-    return c_string
+# import IPython
 
-print(getComplimentaryString("AATTCC"))
+# IPython.!wget --no-check https://d28rh4a8wq0iu5.cloudfront.net/ads1/data/lambda_virus.fa
 
+def read_genome(filename):
+    genome = ""
+    with open(filename, "r") as f:
+        for line in f:
+            if not line[0] == ">":
+                genome += line.rstrip()
+    return  genome
+
+genome_red = read_genome("lambda_virus.fa")
+print(f"Genome sequence: {genome_red}")
