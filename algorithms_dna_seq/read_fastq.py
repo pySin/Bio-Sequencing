@@ -19,5 +19,10 @@ def read_fastq(filename):
     return sequences, qualities
 
 
+def phred33ToQ(qual):
+    return ord(qual) - 33
+
+
 seqs, quals = read_fastq("SRR835775_1.first1000.fastq")
-print(f"Sequences: {seqs}")
+print(f"Sequences: {seqs[:2]}")
+print(f"Qualities: {quals[:2]}")
