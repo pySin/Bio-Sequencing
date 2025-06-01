@@ -17,3 +17,7 @@ def read_fastq(filename):
             sequences.append(seq)
             qualities.append(qual)
     return sequences, qualities
+
+
+seqs, quals = read_fastq("SRR835775_1.first1000.fastq")
+print(f"Sequences: {seqs}")
