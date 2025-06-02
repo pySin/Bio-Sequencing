@@ -49,6 +49,7 @@ histo = create_hist(quals)
 #
 # plt.show()
 
+# Find G and C ratio against A and T
 def find_gc_by_pos(reads):
     gc = [0] * 100
     totals = [0] * 100
