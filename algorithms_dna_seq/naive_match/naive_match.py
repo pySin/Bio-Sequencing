@@ -37,8 +37,19 @@ def generate_reads(genome, num_reads, read_len):
 
 
 
-t = "AGCTTAGATAGC"
-p = "AG"
-results_match = naive(p, t)
-print(f"Matches: {results_match}")
+# t = "AGCTTAGATAGC"
+# p = "AG"
+# results_match = naive(p, t)
+# print(f"Matches: {results_match}")
 
+# Generate random reads
+reads = generate_reads(genome, 100, 100)
+# print(f"Reads: {reads}")
+
+num_matched = 0
+for r in reads:
+    matches = naive(r, genome)
+    if len(matches) > 0:
+        num_matched += len(matches)
+
+print(f"Matches found: {num_matched} out of {len(reads)} reads.")
