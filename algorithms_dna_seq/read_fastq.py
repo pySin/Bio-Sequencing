@@ -64,8 +64,10 @@ def find_gc_by_pos(reads):
             gc[i] /= float(totals[i])
     return gc
 
-gc = find_gc_by_pos(seqs)
-plt.plot(range(len(gc)), gc)
-plt.show()
+# gc = find_gc_by_pos(seqs)
+# plt.plot(range(len(gc)), gc)
+# plt.show()
 
-
+for seq in seqs:
+    count.update(seq)
+print(f"Bases Frequency: {count}")
