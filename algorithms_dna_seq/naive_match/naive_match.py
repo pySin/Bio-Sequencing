@@ -1,6 +1,5 @@
 # Naive match
-
-
+import random
 
 
 def read_genome(filename):
@@ -26,6 +25,17 @@ def naive(p, t):
         if match:
             occurrences.append(i)  # Append only the starting index of the match
     return occurrences
+
+
+def generate_reads(genome, num_reads, read_len):
+    #  Random reads from genome
+    reads = []
+    for _ in range(num_reads):
+        start = random.randint(0, len(genome) - read_len) - 1
+        reads.append(genome[start: start + read_len])
+    return reads
+
+
 
 t = "AGCTTAGATAGC"
 p = "AG"
