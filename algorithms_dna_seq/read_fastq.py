@@ -3,7 +3,10 @@
 #         print(f"Line: {line}")
 
 import matplotlib.pyplot as plt
+import collections
 
+
+count = collections.Counter()
 
 def read_fastq(filename):
     sequences = []
@@ -55,3 +58,14 @@ def find_gc_by_pos(reads):
             if read[i] == "C" or read[i] == "G":
                 gc[i] += 1
             totals[i] += 1
+
+    for i in range(len(gc)):
+        if totals[i] > 0:
+            gc[i] /= float(totals[i])
+    return gc
+
+gc = find_gc_by_pos(seqs)
+plt.plot(range(len(gc)), gc)
+plt.show()
+
+
