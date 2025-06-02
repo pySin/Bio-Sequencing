@@ -2,6 +2,8 @@
 #     for line in f:
 #         print(f"Line: {line}")
 
+import matplotlib.pyplot as plt
+
 
 def read_fastq(filename):
     sequences = []
@@ -38,4 +40,18 @@ def create_hist(qualities):
             hist[q] += 1
     return hist
 
-print(create_hist(quals))
+histo = create_hist(quals)
+# print(f"Histo: {histo}")
+# plt.bar(range(len(histo)), histo)
+#
+# plt.show()
+
+def find_gc_by_pos(reads):
+    gc = [0] * 100
+    totals = [0] * 100
+
+    for read in reads:
+        for i in range(len(read)):
+            if read[i] == "C" or read[i] == "G":
+                gc[i] += 1
+            totals[i] += 1
