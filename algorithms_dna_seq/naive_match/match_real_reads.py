@@ -40,6 +40,15 @@ def naive(p, t):
             occurrences.append(i)  # Append only the starting index of the match
     return occurrences
 
+
+def reverse_compliment(s):
+    complement = {"A": "T", "T": "A", "G": "C", "C": "G"}
+    t = ""
+    for base in s:
+        t = complement[base] + t
+    return t
+
+
 phix_reads, _ = read_fastq("ERR266411_1.first1000.fastq")
 
 num_matched = 0
