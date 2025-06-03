@@ -11,7 +11,7 @@ def read_genome(filename):
     return genome
 
 
-genome = read_genome("phix.fa")
+genome = read_genome("phix.fa")  # Reference genome file
 
 
 def naive(p, t):
