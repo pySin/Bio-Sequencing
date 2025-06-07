@@ -42,7 +42,7 @@ def naive(p, t):
 
 
 def reverse_compliment(s):
-    complement = {"A": "T", "T": "A", "G": "C", "C": "G"}
+    complement = {"A": "T", "T": "A", "G": "C", "C": "G", "N": "N"}
     t = ""
     for base in s:
         t = complement[base] + t
@@ -56,6 +56,8 @@ n = 0
 for r in phix_reads:
     r = r[:30]
     matches = naive(r, genome)
+    matches.extend(naive(reverse_compliment(r), genome))
+    # matches = naive(reverse_compliment(r), genome)
     n += 1
     if len(matches) > 0:
         num_matched += 1
