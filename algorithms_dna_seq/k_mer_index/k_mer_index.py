@@ -9,3 +9,14 @@ class Index(object):
         for i in range(len(t) - k + 1):
             self.index.append((t[i:i + k], i))
         self.index.sort()
+
+    def query(self, p):
+        kmer = p[:self.k]
+        i = bisect.bisect_left(self.index, (kmer, -1))  # -1 is to look for the leftmost first result
+        hits = []
+        while i < len(self.index):
+            if self.index[i][0] != kmer:
+                break
+            hits.append(self.index[i][1])
+            i += 1
+        return hits
