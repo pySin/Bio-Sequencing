@@ -7,6 +7,7 @@ class OpenReadChr1:
         self.file_path = file_path
         self.current_dna_sequence = ""
         self.last_four_characters = ""
+        self.pattern_results = {}
 
     def get_chr1_sequence(self):
         bases_count = {
@@ -44,7 +45,13 @@ class OpenReadChr1:
                             if len(self.current_dna_sequence) == 1000:
                                 self.current_dna_sequence = self.current_dna_sequence[-4:]
 
-    def follower_of_3_bases_per_1000(self):
+    def follower_of_3_bases_per_1000(self, seq_1000, pattern):
+        if pattern not in self.pattern_results:
+            self.pattern_results[pattern] = {"A": 0, "T": 0, "G": 0, "C": 0}
+
+        for i in range(len(pattern) + 1, len(seq_1000) - 4):
+            if seq_1000[i - len(pattern), i] == pattern:
+                self.pattern_results[pattern][seq_1000[i]] += 1
 
 
 
