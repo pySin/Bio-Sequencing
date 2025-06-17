@@ -43,20 +43,28 @@ class OpenReadChr1:
                         else:
                             self.current_dna_sequence += n_base
                             if len(self.current_dna_sequence) == 1000:
+                                self.follower_of_3_bases_per_1000(self.current_dna_sequence, "ATT")
                                 self.current_dna_sequence = self.current_dna_sequence[-4:]
+        return self.pattern_results
 
     def follower_of_3_bases_per_1000(self, seq_1000, pattern):
         if pattern not in self.pattern_results:
             self.pattern_results[pattern] = {"A": 0, "T": 0, "G": 0, "C": 0}
 
         for i in range(len(pattern) + 1, len(seq_1000) - 4):
-            if seq_1000[i - len(pattern), i] == pattern:
+            # print(f"i: {i}")
+            # print(f"i - len pattern: {i - len(pattern)}")
+            # print(f"Current Seq: {seq_1000[i - len(pattern): i]}")
+            # print(f"Pattern: {pattern}")
+            if seq_1000[i - len(pattern): i] == pattern:
+                # print(f"Pattern Match!")
                 self.pattern_results[pattern][seq_1000[i]] += 1
 
 
 
 chromosome_1 = OpenReadChr1("Homo_sapiens.GRCh38.dna.chromosome.1.fa")
-chromosome_1.triple_nucleotide_follower_ratio()  # Finishes in about a minute and a half
+three_ratio = chromosome_1.triple_nucleotide_follower_ratio()  # Finishes in about a minute and a half
+print(three_ratio)
 # chromosome_1_seq, bases_count = chromosome_1.get_chr1_sequence()
 # print(f"Number of clear chr1 bases: {chromosome_1_seq}")
 # print(f"Bases Count: {bases_count}")
