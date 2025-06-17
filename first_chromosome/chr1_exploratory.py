@@ -31,6 +31,7 @@ class OpenReadChr1:
         return sequence_chr1, bases_count
 
     def triple_nucleotide_follower_ratio(self):
+        patterns = ["ATT", "GCG", "CCC"]
 
         with open(self.file_path, "r") as f:
             for line in f.readlines()[1:]:
@@ -43,28 +44,28 @@ class OpenReadChr1:
                         else:
                             self.current_dna_sequence += n_base
                             if len(self.current_dna_sequence) == 1000:
-                                self.follower_of_3_bases_per_1000(self.current_dna_sequence, "ATT")
+                                for pattern in patterns:
+                                    self.follower_of_3_bases_per_1000(self.current_dna_sequence, pattern)
                                 self.current_dna_sequence = self.current_dna_sequence[-4:]
-                                print(f"Add 4 to next 1000: {self.current_dna_sequence}")
-                                print("-=-=---=-=-=-=-==-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-==")
+                                # print(f"Add 4 to next 1000: {self.current_dna_sequence}")
+                                # print("-=-=---=-=-=-=-==-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-==")
         return self.pattern_results
 
     def follower_of_3_bases_per_1000(self, seq_1000, pattern):
         if pattern not in self.pattern_results:
             self.pattern_results[pattern] = {"A": 0, "T": 0, "G": 0, "C": 0}
-        print(f"In follower missing 4: {seq_1000[:4]}")
+        # print(f"In follower missing 4: {seq_1000[:4]}")
 
         for i in range(len(pattern), len(seq_1000) - 1):
             # print(f"i: {i}")
             # print(f"i - len pattern: {i - len(pattern)}")
             # print(f"Current Seq: {seq_1000[i - len(pattern): i]}")
             # print(f"Pattern: {pattern}")
-            print(f"1000 seq: {seq_1000}")
-            print(f"First i: {i}, current 3 seq {seq_1000[i - len(pattern): i]}, Current i: {seq_1000[i]}")
+            # print(f"1000 seq: {seq_1000}")
+            # print(f"First i: {i}, current 3 seq {seq_1000[i - len(pattern): i]}, Current i: {seq_1000[i]}")
             if seq_1000[i - len(pattern): i] == pattern:
                 # print(f"Pattern Match!")
                 self.pattern_results[pattern][seq_1000[i]] += 1
-
 
 
 chromosome_1 = OpenReadChr1("Homo_sapiens.GRCh38.dna.chromosome.1.fa")
