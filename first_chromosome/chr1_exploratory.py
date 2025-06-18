@@ -87,10 +87,23 @@ class OpenReadChr1:
                 # print(f"Pattern Match!")
             self.pattern_results[seq_1000[i - length: i]][seq_1000[i]] += 1
 
+    def bases_ratios(self, bases_dict: dict):
+        bases_rat = {}
+        for pat_base in bases_dict:
+            p_base_sum = bases_dict[pat_base]["A"] + bases_dict[pat_base]["T"] + bases_dict[pat_base]["G"] \
+                         + bases_dict[pat_base]["C"]
+            bases_rat[pat_base] = {"A": bases_dict[pat_base]["A"] / p_base_sum,
+                                   "T": bases_dict[pat_base]["T"] / p_base_sum,
+                                   "G": bases_dict[pat_base]["G"] / p_base_sum,
+                                   "C": bases_dict[pat_base]["C"] / p_base_sum}
+        return bases_rat
+
 
 chromosome_1 = OpenReadChr1("Homo_sapiens.GRCh38.dna.chromosome.1.fa")
-three_ratio = chromosome_1.triple_nucleotide_follower_ratio()  # Finishes in about a minute and a half
-print(three_ratio)
+three_results = chromosome_1.triple_nucleotide_follower_ratio()  # Finishes in about a minute and a half
+print(three_results)
+ratios = chromosome_1.bases_ratios(three_results)
+print(ratios)
 # chromosome_1_seq, bases_count = chromosome_1.get_chr1_sequence()
 # print(f"Number of clear chr1 bases: {chromosome_1_seq}")
 # print(f"Bases Count: {bases_count}")
