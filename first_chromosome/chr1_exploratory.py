@@ -32,7 +32,7 @@ class OpenReadChr1:
         return sequence_chr1, bases_count
 
     def triple_nucleotide_follower_ratio(self):
-        perms = itertools.product(["A", "T", "G", "C"], repeat=3)
+        perms = itertools.product(["A", "T", "G", "C"], repeat=2)
         for perm in perms:
             pattern = "".join(perm)
             self.pattern_results[pattern] = {"A": 0, "T": 0, "G": 0, "C": 0}
@@ -52,7 +52,7 @@ class OpenReadChr1:
                             if len(self.current_dna_sequence) == 1000:
                                 # for pattern in patterns:
                                     # self.follower_of_3_bases_per_1000(self.current_dna_sequence, pattern)
-                                self.follower_of_random_length(self.current_dna_sequence, 3)
+                                self.follower_of_random_length(self.current_dna_sequence, 2)
                                 self.current_dna_sequence = self.current_dna_sequence[-4:]
                                 # print(f"Add 4 to next 1000: {self.current_dna_sequence}")
                                 # print("-=-=---=-=-=-=-==-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-==")
